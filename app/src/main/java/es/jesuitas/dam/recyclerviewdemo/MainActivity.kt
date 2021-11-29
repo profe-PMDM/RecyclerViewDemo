@@ -4,13 +4,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import es.jesuitas.dam.recyclerviewdemo.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        val binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val rv: RecyclerView = findViewById(R.id.rv)
+        val rv: RecyclerView = binding.rv
         rv.layoutManager = LinearLayoutManager(this)
 
         rv.adapter = NumberListAdapter(IntRange(0,100).toList())
