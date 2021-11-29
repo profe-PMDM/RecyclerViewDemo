@@ -31,6 +31,7 @@ class NumberListAdapter :
     override fun onBindViewHolder(holder: IntViewHolder, position: Int) {
 
         holder.binding.num = getItem(position)
+        holder.binding.executePendingBindings()
     }
 
 }
