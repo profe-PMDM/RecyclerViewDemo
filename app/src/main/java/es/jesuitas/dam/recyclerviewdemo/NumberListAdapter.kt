@@ -5,12 +5,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import es.jesuitas.dam.recyclerviewdemo.databinding.ActivityMainBinding
 import es.jesuitas.dam.recyclerviewdemo.databinding.ItemViewBinding
 
-class NumberListAdapter(var data: List<Int>) :
-    RecyclerView.Adapter<NumberListAdapter.IntViewHolder>() {
+class NumberListAdapter :
+    ListAdapter<Int, NumberListAdapter.IntViewHolder>(RowItemDiffCallback()) {
 
     class IntViewHolder private constructor(val binding: ItemViewBinding):
         RecyclerView.ViewHolder(binding.root) {
@@ -29,11 +30,21 @@ class NumberListAdapter(var data: List<Int>) :
 
     override fun onBindViewHolder(holder: IntViewHolder, position: Int) {
 
-        holder.binding.num = data[position]
+        holder.binding.num = getItem(position)
     }
 
-    override fun getItemCount() = data.size
-
 }
+
+class RowItemDiffCallback : DiffUtil.ItemCallback<Int>() {
+
+    override fun areItemsTheSame(oldItem: Int, newItem: Int): Boolean {
+        return oldItem == newItem
+    }
+
+    override fun areContentsTheSame(oldItem: Int, newItem: Int): Boolean {
+        return oldItem == newItem
+    }
+}
+
 
 

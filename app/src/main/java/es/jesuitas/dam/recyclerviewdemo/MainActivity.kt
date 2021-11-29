@@ -7,15 +7,17 @@ import androidx.recyclerview.widget.RecyclerView
 import es.jesuitas.dam.recyclerviewdemo.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+    private val adapter = NumberListAdapter()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val rv: RecyclerView = binding.rv
-        rv.layoutManager = LinearLayoutManager(this)
+        binding.rv.adapter = adapter
+        binding.rv.layoutManager = LinearLayoutManager(this)
 
-        rv.adapter = NumberListAdapter(IntRange(0,100).toList())
-
+        adapter.submitList(IntRange(0,100).toList())
     }
 }
