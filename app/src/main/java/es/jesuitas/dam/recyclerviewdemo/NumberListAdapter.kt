@@ -1,13 +1,10 @@
 package es.jesuitas.dam.recyclerviewdemo
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import es.jesuitas.dam.recyclerviewdemo.databinding.ActivityMainBinding
 import es.jesuitas.dam.recyclerviewdemo.databinding.ItemViewBinding
 
 class NumberListAdapter :
