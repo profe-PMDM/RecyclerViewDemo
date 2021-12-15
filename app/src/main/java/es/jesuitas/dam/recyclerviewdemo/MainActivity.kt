@@ -2,17 +2,24 @@ package es.jesuitas.dam.recyclerviewdemo
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import es.jesuitas.dam.recyclerviewdemo.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private val adapter = NumberListAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val adapter = NumberListAdapter(MyListener { num ->
+            Toast.makeText(this,
+                "El número seleccionado es el ${num}",
+                Toast.LENGTH_LONG)
+                .show()
+        })
 
         binding.rv.adapter = adapter
 

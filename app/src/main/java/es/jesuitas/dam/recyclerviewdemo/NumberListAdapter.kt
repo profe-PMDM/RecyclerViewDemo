@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import es.jesuitas.dam.recyclerviewdemo.databinding.ItemViewBinding
 
-class NumberListAdapter :
+class NumberListAdapter(val clickListener: MyListener) :
     ListAdapter<Int, NumberListAdapter.IntViewHolder>(RowItemDiffCallback()) {
 
     class IntViewHolder private constructor(val binding: ItemViewBinding):
@@ -29,6 +29,7 @@ class NumberListAdapter :
 
         holder.binding.num = getItem(position)
         holder.binding.executePendingBindings()
+        holder.binding.clickListener = clickListener
     }
 
 }
@@ -42,6 +43,10 @@ class RowItemDiffCallback : DiffUtil.ItemCallback<Int>() {
     override fun areContentsTheSame(oldItem: Int, newItem: Int): Boolean {
         return oldItem == newItem
     }
+}
+
+class MyListener(val clickListener: (num: Int) -> Unit) {
+    fun onClick(num: Int) = clickListener(num)
 }
 
 
